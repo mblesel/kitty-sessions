@@ -62,7 +62,6 @@ start_session() {
             SESSION_FILE_PATH="${SELECTED%/}"
             PROJECT_NAME="${SESSION_FILE_PATH##*/}"
             SESSION_FILE_PATH="${SESSION_FILE_PATH}/${PROJECT_NAME}.kitty-session"
-            echo "${SESSION_FILE_PATH}" >~/out
             kitten @ env KS_CURRENT_SESSION="${SESSION_FILE_PATH}"
             kitten @ action launch --title="${PROJECT_NAME}" --type=tab --tab-title="${PROJECT_NAME}" --cwd="${SELECTED}"
             kitten @ action save_as_session --relocatable --match=session:^$ --save-only "${SESSION_FILE_PATH}"
