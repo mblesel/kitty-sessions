@@ -42,3 +42,6 @@ map f6 launch --type=tab --tab-title=KS_TAB --add-to-session . --keep-focus ~/.l
 This is mainly for personal use and not very polished yet.
 The script needs some not so nice workarounds to make kitty sessions behave in the way that I want them to.
 Very likely there are some bugs and use cases I didn't think of.
+The saving script is only able to save tabs that are actually part of the current kitty session.
+If you spawn your tabs with `new_tab_with_cwd` it will work correctly because kitty automatically adds those to
+the current session.
