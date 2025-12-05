@@ -10,10 +10,10 @@ sanity_check() {
         echo "fzf is not installed. Please install it first."
         exit 1
     fi
-    if ! command -v fd &>/dev/null; then
-        echo "fd is not installed. Please install it first."
-        exit 1
-    fi
+    # if ! command -v fd &>/dev/null; then
+    #     echo "fd is not installed. Please install it first."
+    #     exit 1
+    # fi
 }
 
 usage() {
@@ -23,7 +23,8 @@ usage() {
 # Load an existing session or create a new one if the project does not already have one
 start_session() {
     # Get all directories that already contain a kitty session file
-    SESSION_FILES=$(fd --glob '*.kitty-session' "${KS_PATHS[@]}")
+    # SESSION_FILES=$(fd --glob '*.kitty-session' "${KS_PATHS[@]}")
+    SESSION_FILES=$(find "${KS_PATHS[@]}" -name '*.kitty-session')
     SESSION_DIRS=$(echo "$SESSION_FILES" | while read -r session; do
         session_name=${session%/*.kitty-session}
         echo "$session_name"
@@ -43,6 +44,7 @@ start_session() {
         DISPLAY_SESSIONS=""
     fi
 
+    echo $SESSION_FILES
     SELECTED=$({
         echo "${DISPLAY_SESSIONS}"
         echo "${FILTERED_DIRS}"
