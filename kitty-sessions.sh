@@ -24,7 +24,7 @@ usage() {
 start_session() {
     # Get all directories that already contain a kitty session file
     # SESSION_FILES=$(fd --glob '*.kitty-session' "${KS_PATHS[@]}")
-    SESSION_FILES=$(find "${KS_PATHS[@]}" -name '*.kitty-session')
+    SESSION_FILES=$(find "${KS_PATHS[@]}" -maxdepth 2 -name '*.kitty-session')
     SESSION_DIRS=$(echo "$SESSION_FILES" | while read -r session; do
         session_name=${session%/*.kitty-session}
         echo "$session_name"
